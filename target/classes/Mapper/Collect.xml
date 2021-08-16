@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.malldemo.Dao.CollectDao">
+
+    <resultMap id="collectResultMap" type="com.kill.malldemo.Pojo.Collect">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="collect_time" property="collectTime" jdbcType="BIGINT"/>
+    </resultMap>
+
+
+    <select id="queryCollectByUserIdAndProductId" resultMap="collectResultMap">
+        select * from malldemo.collect where user_id = #{userId} AND product_id = #{productId}
+    </select>
+
+    <insert id="addCollect">
+        insert into malldemo.collect (id, user_id, product_id, collect_time) values  (#{id}, #{userId}, #{productId}, #{collectTime})
+    </insert>
+
+    <delete id="delCollect">
+        delete from malldemo.collect where user_id = #{userId} AND product_id = #{productId}
+    </delete>
+
+</mapper>

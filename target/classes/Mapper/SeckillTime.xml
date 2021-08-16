@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kill.malldemo.Dao.SeckillTimeDao">
+
+    <resultMap id="seckillTimeResultMap" type="com.kill.malldemo.Pojo.SeckillTime">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="BIGINT"/>
+        <result column="end_time" property="endTime" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="getTime" resultMap="seckillTimeResultMap">
+        select * from malldemo.seckill_time where end_time > #{endTime}
+    </select>
+
+    <select id="querySeckillTime" resultMap="seckillTimeResultMap">
+        select * from malldemo.seckill_time where start_time = #{startTime} AND end_time = #{endTime}
+    </select>
+
+    <insert id="addSeckillTime">
+        insert into malldemo.seckill_time (id, start_time, end_time)
+        VALUES (#{id}, #{startTime}, #{endTime})
+    </insert>
+
+    <select id="getSeckillTimeById" resultMap="seckillTimeResultMap">
+        select * from malldemo.seckill_time where id = #{id}
+    </select>
+
+</mapper>

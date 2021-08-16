@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.malldemo.Dao.ShoppingCartDao">
+
+    <resultMap id="shoppingCartResultMap" type="com.kill.malldemo.Pojo.ShoppingCart">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="getCartByUserId" resultMap="shoppingCartResultMap">
+        select * from malldemo.shopping_cart where malldemo.shopping_cart.user_id = #{userId}
+    </select>
+
+    <insert id="addCart">
+        insert into malldemo.shopping_cart (id, user_id, product_id, num) values  (#{id}, #{userId}, #{productId}, #{num})
+    </insert>
+
+    <update id="updateById">
+        update malldemo.shopping_cart SET num = #{num} WHERE id = #{id}
+    </update>
+
+    <delete id="delCart">
+        delete from malldemo.shopping_cart where shopping_cart.id = #{id} AND shopping_cart.user_id = #{userId}
+    </delete>
+
+    <select id="getCartByUserIdProductId" resultMap="shoppingCartResultMap">
+        select * from malldemo.shopping_cart where malldemo.shopping_cart.user_id = #{userId} AND malldemo.shopping_cart.product_id = #{productId}
+    </select>
+
+    <update id="updateCart">
+        update malldemo.shopping_cart SET num = #{num} WHERE id = #{id} AND user_id = #{userId}
+    </update>
+
+</mapper>

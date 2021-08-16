@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.malldemo.Dao.CategoryDao">
+
+    <resultMap id="categoryResultMap" type="com.kill.malldemo.Pojo.Category">
+        <id column="id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="name" property="categoryName" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <select id="getCategoryList" resultMap="categoryResultMap">
+        select * from malldemo.category
+    </select>
+
+</mapper>
+
+

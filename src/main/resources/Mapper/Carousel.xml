@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.malldemo.Dao.CarouselDao">
+
+    <resultMap id="carouselResultMap" type="com.kill.malldemo.Pojo.Carousel">
+        <id column="id" property="carousel_id" jdbcType="INTEGER"/>
+        <result column="img_path" property="imgPath" jdbcType="CHAR"/>
+        <result column="describes" property="describes" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <select id="getCarouselList" resultMap="carouselResultMap">
+        select * from malldemo.carousel
+    </select>
+
+</mapper>

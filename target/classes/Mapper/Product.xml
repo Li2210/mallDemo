@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kill.malldemo.Dao.ProductDao">
+
+    <resultMap id="productResultMap" type="com.kill.malldemo.Pojo.Product">
+        <id column="id" property="productId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="CHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="product_title" property="productTitle" jdbcType="CHAR"/>
+        <result column="product_intro" property="productIntro" jdbcType="CHAR"/>
+        <result column="product_picture" property="productPicture" jdbcType="CHAR"/>
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE"/>
+        <result column="product_selling_price" property="productSellingPrice" jdbcType="DOUBLE"/>
+        <result column="product_num" property="productNum" jdbcType="INTEGER"/>
+        <result column="product_sales" property="productSales" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getProductByCategoryId" resultMap="productResultMap">
+        select * from malldemo.product where product.category_id = #{categoryId}
+    </select>
+
+    <select id="getProductById" resultMap="productResultMap">
+        select * from malldemo.product where product.id = #{productId}
+    </select>
+
+    <select id="getHotProduct" resultMap="productResultMap">
+        select * from malldemo.product ORDER BY malldemo.product.product_sales desc
+    </select>
+
+    <select id="getAllProduct" resultMap="productResultMap">
+        select * from malldemo.product
+    </select>
+
+    <select id="getCollect" resultMap="productResultMap">
+        select product.* from product, collect where collect.user_id = #{userId} and collect.product_id = product.id
+    </select>
+
+    <update id="updateProduct">
+        update malldemo.product SET product_num = #{productNum}, product_sales = #{productSales} WHERE id = #{productId}
+    </update>
+
+</mapper>
